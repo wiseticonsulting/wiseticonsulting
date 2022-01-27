@@ -1,0 +1,419 @@
+https://github.com/lopesdiego12 
+
+ 
+
+https://hub.docker.com/r/puckel/docker-airflow/ 
+
+ 
+
+https://lopesdiego12.medium.com/monitoramento-de-data-pipelines-grafana-apache-airflow-d606740afff 
+
+ 
+
+https://github.com/lopesdiego12/Apache-Airflow 
+
+ 
+
+ 
+
+Como criar seu primeiro data pipeline no Apache Airflow 
+
+Com esse passo a passo você poderá entender um pouco mais da história dessa ferramenta, conceitos, arquitetura e criar duas dags totalmente do início. 
+
+Diego Lopes
+Diego Lopes 
+
+May 30, 2020·4 min read 
+
+História 
+
+Criado pelo time de desenvolvedores do AirBnB, com o intuito de definir fluxos de trabalho(workflow) e pipelines que envolvem consultas de inúmeras fontes, tratamento e mineração de dados. Ela se tornou open source em meados de 2015, sendo divulgado por um post no medium aonde os engenheiros e cientistas de dados do AirBnB compartilharam suas experiências. Depois de algum tempo, ela foi cedida para o Apache em que se tornou um dos inúmeros projetos que ela mantém open-source, hoje chamado de Apache Airflow. 
+
+Definição 
+
+O Apache Airflow é uma plataforma de gerenciamento de fluxo de trabalho open source. 
+
+Os pipelines do airflow são escritos na linguagem Python, isso gera maior dinamismo. 
+
+Forma simples e visual de controlar tarefas agendas. 
+
+Tarefas agendadas para executar a qualquer momento ou com condições específicas(Celery). 
+
+Monitoramento centralizado de todas as tarefas, tendo total autonomia e gerenciamento de quando e como executou/falhou. 
+
+É possível executar comandos Bash (Exemplo: ls, cp, mkdir, ps) 
+
+ 
+
+Conceitos 
+
+Operators 
+
+Executam uma ação ou manda informação para outro sistema executar uma ação dentro do seu workflow. 
+
+Dags (DAG = Directed Acyclic Graph) 
+
+É um grafo acíclico, em que todas as tarefas que são executadas e organizadas de uma forma que reflete os seus relacionamentos e dependências. Você pode definir que um determinado nó deve ser executado se a anterior for um sucesso ou não, ou que o nó A terá um timeout de 5 minutos, e o nó B pode ser reiniciado até 5 vezes caso não tenha sucesso. 
+
+ 
+
+Tasks 
+
+Tarefas dentro de uma dag que irão executar um comando específico para cada tipo de operador. 
+
+Outros conceitos: XComs, Variables, Recap, Connections, Hooks 
+
+Arquitetura 
+
+
+「 , General Architecture 
+Scheduler: Monitora todas as tasks e dags para assegurar que todas as execuções estão conforme agendadas. 
+
+Executor: É um processo de enfileiramento de mensagens. 
+
+ 
+
+Worker: Responsável por executar a lógica das tasks as quais são determinadas pelo executor que está utilizando. 
+
+Airflow database: Guarda os metadados do airflow, histórico de execuções, dos jobs/tasks. 
+
+ 
+
+Webserver: Inteface gráfica (GUI — Graphic User Interface) 
+
+Docker 
+
+Fornece uma camada de abstração e automação para virtualização de sistema operacional 
+
+ 
+
+Docker compose 
+
+Roda múltiplos containers e sobe múltiplos serviços/aplicações através de comandos no arquivo YAML(YML) 
+
+ 
+
+Praticando 
+
+Necessário ter instalado o docker na sua máquina. Instalação do docker 
+
+ 
+
+Este será o repositório no docker hub que iremos utilizar. 
+
+Execute o comando abaixo no terminal do seu sistema operacional. 
+
+Docker pull puckel/docker-airflow 
+
+ 
+
+C: \Users\dieg01s>docker pull apache/airflow 
+using default tag: latest 
+latest: Pulling from apache/airflow 
+c499e6d256d6: 
+omplete 
+575a9ßdc4418: 
+2cfc17dfb1e4: 
+48d9fd69f299 : 
+575a9ßdc4418: 
+Pull complete 
+58987ff9dß5d : 
+Waiting 
+fcd8fd2c1414: 
+Download 
+complete 
+48d9fd69f299 : 
+fcd8fd2c1414 : 
+Waiting 
+4337a8e826e8: 
+Download 
+Waiting 
+complete 
+2cfc17dfb1e4 : 
+62bßf1bf7919 : 
+Waiting 
+b2dß414a4eae : 
+Pull complete 
+Waiting 
+58987ff9dß5d : 
+Download c 
+Pull compl 
+Downloading 
+Downloading 
+Download complete 
+pull 
+249 . 1kB/4 
+compl ete 
+. 8881-1B 
+25 . 271-18/43 . 751-1B 
+14.418/37 . 311-1B 
+Baixando a imagem do Airflow 
+
+Faça o download do arquivo yml antes de executar o comando abaixo 
+
+ 
+
+docker-compose -f docker-compose-CeleryExecutor.yml up -d 
+
+C: \ Llsers \ di egols \ Downloads>docker- compose 
+-f docker- compose-CeleryExecutor .yml up 
+-d 
+Starting 
+Starting 
+Starting 
+Starting 
+Creating 
+Creating 
+downloads 
+downloads 
+downloads 
+downloads 
+downloads 
+downloads 
+postgres_l 
+redis 1 
+webserver 1 
+flower 1 
+scheduler 1 
+worker 1 
+done 
+done 
+done 
+done 
+done 
+done 
+ 
+
+docker ps 
+
+C: \ Llsers \ di egols 
+CONTAINER ID 
+7ac69eødee2a 
+ownloads worker 1 
+2ffSb24ae7Sd 
+ownloads scheduler 
+94abea6ba873 
+ownloads webserver 
+d3b1716ba8d3 
+ownloads flower 1 
+d84168643264 
+ownloads_postgres_l 
+8€gøsaae8ebd 
+ownloads redis 1 
+ps 
+INAGE 
+puckel/docker-airflow: 
+puckel/docker-airflow: 
+puckel/docker-airflow: 
+puckel/docker-airflow: 
+postgres : g . 6 
+redis:S.ø.S 
+CREATED 
+STATUS 
+1.18.9 
+1.18.9 
+1.18.9 
+1.18.9 
+"/entrypoint . sh 
+"/entrypoint . sh 
+"/entrypoint . sh 
+" / entrypoi nt 
+work..." 
+sche..." 
+webs..." 
+flow..." 
+8 
+8 
+8 
+8 
+8 
+8 
+hours 
+hours 
+hours 
+hours 
+hours 
+hours 
+ago 
+ago 
+ago 
+ago 
+ago 
+ago 
+Up 
+Up 
+Up 
+Up 
+Up 
+Up 
+18 
+18 
+18 
+18 
+18 
+18 
+minutes 
+minutes 
+minutes 
+minutes 
+minutes 
+minutes 
+(healthy) 
+PORTS 
+ssss,'tcp, 
+ssss,'tcp, 
+ssss,'tcp, 
+8888/tcp, 
+5432/tcp 
+6379/tcp 
+8888/tcp, 
+8888/tcp, 
+8793/tcp, 
+8793/tcp 
+8793/tcp 
+e.ø.ø.ø:8ß8ß- 
+>8ß8ß/tcp 
+8793/tcp 
+"docker-entrypoint . s..." 
+"docker-entrypoint . s..." 
+Adicionando o código python para criação da dag(copiar o python para dentro do seu docker 7ac é a ID da minha imagem). 
+
+ 
+
+Os códigos em python e yml poderão ser encontrados no meu repositório do github 
+
+docker cp Tuto.py 7ac:/usr/local/airflow/dags 
+
+ 
+
+Adicionando o código python para ciação da dag 
+
+docker cp DagCode.py 7ac:/usr/local/airflow/dags 
+
+ 
+
+Adicionando o yml que o python acima chama 
+
+docker cp exemplo.yml 7ac:/usr/local/airflow/dags/config 
+
+ 
+
+Após executar os comandos acima você poderá conferir o resultado no seu navegador preferido no endereço localhost:8080/admin 
+
+localhost:8080/admin/ 
+Airflow 
+DAGs 
+O 
+DAGS 
+DAG 
+Pipelinel 
+tutorial 
+Data Profiling 
+Schedule 
+1 day, 
+Browse 
+Admin 
+Docs 
+About 
+Recent Tasks O 
+Search: 
+Last Run O 
+Owner 
+airflow, diego 
+airflow 
+DAG Runs O 
+2020-05-24 0555153 UTC 
+Links 
+.11 + 
+Showing 1 to 2 of 2 entries 
+Hide Paused DAGS 
+Vamos analisar a dag tutorial, abrindo o código python. 
+
+Tuto. py 
+2 
+Code 
+that goes along with the Airflow located at: 
+3 
+http : //airflow.readthedocs.org/en/latest/tutorial . html 
+4 
+from 
+ai rflow 
+import 
+6 
+from 
+airflow. operators . bash_operator 
+import 
+BashOperator 
+7 
+from 
+datetime 
+import 
+datetime, timedelta 
+8 
+9 
+10 
+default_args 
+11 
+"owner": "airflow" 
+12 
+13 
+14 
+15 
+16 
+17 
+18 
+19 
+20 
+21 
+22 
+23 
+24 
+25 
+26 
+27 
+28 
+29 
+30 
+31 
+32 
+dag 
+t1 
+t2 
+"depends_on_past" : 
+False, 
+datetime(2Ø2e, 5, 20), 
+"start date": 
+["airflob@airflow.com"], 
+"email" : 
+"email on failure": False, 
+"email_on_retry": False, 
+"retries" : 
+"retry_delay": timedelta (minutes=5) , 
+'queue': 'bash _ queue 
+' pool': 'backfill% 
+' priority _ weight' 
+. le, 
+datetime(2Ø16, 1, 1), 
+'end date': 
+DAGC "tutorial", defauLt_args=defau1t_args, scheduLe_intervaL=timede1ta(1)) 
+t2 and t3 are examples of tasks created by instantiating operators 
+BashOperator(task_id="print_date% bash _ command="date", dag=dag) 
+sleep", bash_command="sleep 5", retries=3, dag=dag) 
+templ ated_command 
+Podemos perceber que na linha 28 o comando que a task1(t1) está executando é um comando bash “date”. O mesmo podemos perceber na linha 30 com o comando “sleep 5” 
+
+À partir desse ponto você poderá criar dags personalizadas dependendo da necessidade que seus dados precisam. Aqui você aprendeu um pouco sobre essa poderosa ferramenta que é essencial para um verdadeiro Engenheiro de dados. 
+
+Espero ter ajudado, qualquer dúvida, estou à disposição. 
+
+Meu github 
+
+Documentação Airflow 
+
+Github Airflow 
+
+
+
+ 
+
+ 
