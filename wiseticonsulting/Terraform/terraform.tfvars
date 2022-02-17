@@ -1,0 +1,2 @@
+wise_token="eac32a54843e768390b0ad9402034f835abe5de311478501388dfab473fe9463"
+cluster_name="k8s-lab"
