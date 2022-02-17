@@ -1,0 +1,34 @@
+# Criçao de Pod ( SEM RESILIENCIA)
+apiVersion : v1
+kind: Pod
+metadata:
+  name: wiseti-pod
+spec:
+  containers:
+    - name: web
+      image: kubedevio/web-page:blue
+      ports:
+        - containerPort: 80
+
+---
+
+# Criando POd com Labels 
+
+apiVersion : v1
+kind: Pod
+metadata:
+  name: wiseti-pod-label
+  labels :
+    app : web
+spec:
+  containers:
+    - name: web
+      image: kubedevio/web-page:blue
+      ports:
+        - containerPort: 80
+
+---
+# Criando POd com ReplicaSET
+
+
+      
