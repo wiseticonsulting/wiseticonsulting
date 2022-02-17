@@ -1,0 +1,21 @@
+# Criçao de Pod ( SEM RESILIENCIA)
+apiVersion : apps/v1
+kind: ReplicaSet
+metadata:
+  name: wiseti-pod-replicaset
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+        - name: web
+          image: kubedevio/web-page:green
+          ports:
+            - containerPort: 80
+ 
