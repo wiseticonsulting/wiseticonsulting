@@ -7,10 +7,9 @@ This will not cover all things "DevOps" but it will cover the areas that I feel 
 Progress
 Semana 01 
 
-[✔️] ♾️ 1 > Introdução 
-
-[✔️] ♾️ 1 >Overview sobre container e Kubernetes 
-[✔️] ♾️ 1 >O que é a Cloud Native Computing Foundation ? 
+- [✔️] ♾️ 1 > Introdução 
+- [✔️] ♾️ 1 >Overview sobre container e Kubernetes 
+- [✔️] ♾️ 1 >O que é a Cloud Native Computing Foundation ? 
 [✔️] ♾️ 1 >Arquitetura do Kubernetes 
 [✔️] ♾️ 1 >Instalação das Ferramentas do Curso 
 [✔️] ♾️ 1 >Introdução 
