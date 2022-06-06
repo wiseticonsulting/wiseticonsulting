@@ -7,11 +7,11 @@ This will not cover all things "DevOps" but it will cover the areas that I feel 
 Progress
 Semana 01 
 
-- [✔️] ♾️ 1 > Introdução 
-- [✔️] ♾️ 1 >Overview sobre container e Kubernetes 
-- [✔️] ♾️ 1 >O que é a Cloud Native Computing Foundation ? 
-[✔️] ♾️ 1 >Arquitetura do Kubernetes 
-[✔️] ♾️ 1 >Instalação das Ferramentas do Curso 
+- [✔️] ♾️ 1 > [Introdução](https://wiseticonsultingcombr-my.sharepoint.com/personal/antonio_figueiredo_wiseticonsulting_com_br/_layouts/15/Doc.aspx?sourcedoc={04687114-e43c-41af-9409-7d6b71195e86}&action=edit&wd=target%28IInstallation%20and%20%20Use.one%7Ca54fe624-c31b-47fe-92e9-a9dfb2506720%2FDocker%201%20-%20Kubedev%7C620ad61a-4aa9-436e-b2f2-90e4a6598eae%2F%29&wdorigin=NavigationUrl) 
+- [✔️] ♾️ 2 > Overview sobre container e Kubernetes 
+- [✔️] ♾️ 3 > O que é a Cloud Native Computing Foundation ? 
+- [✔️] ♾️ 4 > Arquitetura do Kubernetes 
+- [✔️] ♾️ 5 > Instalação das Ferramentas do Curso 
 [✔️] ♾️ 1 >Introdução 
 [✔️] ♾️ 1 >Ferramentas exclusivas para Windows 
 [✔️] ♾️ 1 >Chocolatey 
@@ -22,11 +22,11 @@ Semana 01
 [✔️] ♾️ 1 >Kubernetes no seu Ambiente Local 
 
 Introdução 
-[✔️] ♾️ 1 >Instalando o Multipass e MicroK8S 
-[✔️] ♾️ 1 >Utilizando Multipass e MicroK8S 
-[✔️] ♾️ 1 >Instalando o Kind 
-[✔️] ♾️ 1 >Utilizando Kind 
-[✔️] ♾️ 1 >Utilizando Kubernetes as a Service 
+- [✔️] ♾️ 1 >Instalando o Multipass e MicroK8S 
+- [✔️] ♾️ 1 >Utilizando Multipass e MicroK8S 
+- [✔️] ♾️ 1 >Instalando o Kind 
+- [✔️] ♾️ 1 >Utilizando Kind 
+- [✔️] ♾️ 1 >Utilizando Kubernetes as a Service 
 
 Introdução 
 
