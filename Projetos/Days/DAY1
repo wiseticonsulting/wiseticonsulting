@@ -1,0 +1,535 @@
+Uname – r 
+
+ 
+
+Sudo apt-get update 
+
+ 
+
+ 
+
+l_uget -QD- https://get.docker.com/ sh 
+ 
+
+Essa [e a Arquitetura do ambiente Docker 
+
+ 
+
+Arquitetura do Docker 
+bcker 
+•cker run 
+ 
+
+ 
+
+DOCKER CONTAINERF RUN 
+
+ 
+
+Docker container run –name –hello world  
+
+ 
+
+Docker container run –it ubuntu /bin/bash ( INTERATIVO ) 
+
+  
+
+sudo docker container run -d -p 8080:80 --name wiseti_nginx nginx 
+
+  
+
+sudo docker container run -d -p 27017:27017 --name wise_mongo -e MONGO_INITDB_ROOT_USERNAME=mongouser -e MONGO_INITDB_ROOT_PASSWORD=mongopwd mongo 
+
+ 
+
+Troubleshotting  
+
+ 
+
+ sudo docker container inspect ad730c0fa96e 
+
+ 
+
+sudo docker container inspect ad730c0fa96e |grep -i mem 
+
+            "Memory": 0, 
+
+            "CpusetMems": "", 
+
+            "KernelMemory": 0, 
+
+            "KernelMemoryTCP": 0, 
+
+            "MemoryReservation": 0, 
+
+            "MemorySwap": 0, 
+
+            "MemorySwappiness": null, 
+
+ 
+
+sudo docker container inspect ad730c0fa96e |grep -i cpu 
+
+            "CpuShares": 0, 
+
+            "NanoCpus": 0, 
+
+            "CpuPeriod": 0, 
+
+            "CpuQuota": 0, 
+
+            "CpuRealtimePeriod": 0, 
+
+            "CpuRealtimeRuntime": 0, 
+
+            "CpusetCpus": "", 
+
+            "CpusetMems": "", 
+
+            "CpuCount": 0, 
+
+            "CpuPercent": 0, 
+
+ 
+
+sudo docker container exec -it ad730c0fa96e /bin/bash 
+
+ 
+
+ sudo docker container logs ad730c0fa96e 
+
+ 
+
+sudo docker container logs -n 5 ad730c0fa96e 
+
+ 
+
+sudo docker container logs –f  ad730c0fa96e 
+
+ 
+
+sudo docker container logs –t  ad730c0fa96e 
+
+ 
+
+IMAGENS 
+
+ 
+
+E o container? 
+Ccrt21ner 
+Escrita 
+07 
+CamMa OS 
+Camada 
+Cam"a 03 
+Camada 01 
+Imagem da Aplicacáo 
+ 
+
+CarnMa 04 
+03 
+Camada 02 
+Aplicacho Exernplo 01 
+CamMa 
+CunMa 03 
+Camada 02 
+Αρ.ΙΙαας,ήο Elernplo 02 
+ 
+
+CarnMa 04 
+03 
+Camada 02 
+Aplicacho Exernplo 01 
+CamMa 
+CunMa 03 
+Camada 02 
+Αρ.ΙΙαας,ήο Elernplo 02 
+ 
+
+Imagem da SO 
+ 
+
+Como construir sua imagem Docker? 
+• Docker Commit 
+• Dockerfile 
+ 
+
+sudo docker container run -it ubuntu /bin/bash 
+
+Apt-get update 
+
+Apt-get install curl 
+
+sudo docker commit c800fb25ceaf ubunt-curl-commit 
+
+  
+
+sudo docker container -ls 
+
+ 
+
+kube@antoniofigueiredo:~$ sudo docker image ls 
+
+REPOSITORY          TAG       IMAGE ID       CREATED          SIZE 
+
+ubunt-curl-commit   latest    8978b69da8cd   37 seconds ago   122MB 
+
+teste               1.0       96d27535cd39   2 days ago       124MB 
+
+mongo               latest    ee13a1eacac9   10 days ago      696MB 
+
+ubuntu              latest    d13c942271d6   10 days ago      72.8MB 
+
+amazon/aws-cli      latest    c27cba774064   10 days ago      344MB 
+
+nginx               latest    605c77e624dd   2 weeks ago      141MB 
+
+debian              latest    6f4986d78878   3 weeks ago      124MB 
+
+hello-world         latest    feb5d9fea6a5   3 months ago     13.3kB 
+
+centos              7         eeb6ee3f44bd   4 months ago     204MB 
+
+ 
+
+ 
+
+Dockerfile 
+
+ 
+
+Opções de uso no Dockerfile 
+o ima.em a partir uma 
+tx«ut• um 
+irn.m 
+Define o comando efoo m 
+tXPOSt o container a em 
+preces. 
+arquiv•s e ao 
+ir..m 
+a um pode 
+o vu direório 
+ 
+
+PRIMEIRA APLICAÇÃO RODANDO NO CONTAINER 
+
+
+https://github.com/KubeDev 
+
+ 
+
+Git clone https://github.com/KubeDev/conversao-temperatura 
+
+ 
+
+## Onde voce criar o arquivo Dockerfiles o processo Docker Build interpreta o conteudo e executa as instruções 
+
+ 
+
+FROM node 
+
+WORKDIR /app 
+
+COPY package*.json ./ 
+
+RUN npm install  
+
+COPY . . 
+
+EXPOSE 8080 
+
+CMD ["node", "server.js"] 
+
+ 
+
+Docker image build –t conversao-temp [ CRIAR IMAGEM ] 
+
+ 
+
+Sudo docker images ls [ LISTAR IMAGEM] 
+
+ 
+
+REPOSITORY               TAG       IMAGE ID       CREATED             SIZE 
+
+conversao-temp           latest    bf723c741e44   16 minutes ago      1.05GB 
+
+ubuntu-curl-vim          latest    e55f04c33d68   46 minutes ago      184MB 
+
+ubuntu-curl-file         latest    13d643c1c735   About an hour ago   122MB 
+
+ubunt-curl-commit        latest    8978b69da8cd   23 hours ago        122MB 
+
+ 
+
+Docker image build –d  -p 8080:8080  conversao-temp [ SUBIR CONTAINER ]  
+
+ 
+
+Nomeando sua Imagem Docker 
+fabricioveronez/api-conversao:vl 
+Narnespace 
+ubuntu:20.10 
+Repositòrio 
+Tag 
+Tag 
+ 
+
+ 
+
+docker image build -t wiseticonsulting/conversao-temperatura:v1 . 
+
+ 
+
+antoniofiguei redo@antoniofiguei redo: —'Wi se_Reposi tory/Dockerfi les 
+ulting/conversao-temperatura:vl 
+Sending build context to Docker daemon 22 
+. 89MB 
+step 1/2 
+FROM ubuntu 
+--> d13c942271d6 
+docker 
+image 
+step 2/2 
+RUN apt-get update && apt-get install curl 
+---> Using cache 
+--> e55f@4c33d68 
+Successfully built e55f@4c33d68 
+--yes && apt 
+-get 
+install 
+Successfully tagged wiseticonsulting/conversao-temperatura:vl 
+antoniofiguei redo@antoniofiguei redo: —'Wi se_Reposi tory/Dockerfi les 
+build 
+-t wiseticons 
+vim --yes 
+Is 
+docker image 
+CREATED 
+REPOSITORY 
+wiseticonsulting/conversao-temperatura 
+conversao-temp 
+ubuntu-curl-vim 
+wi set iconsulting/conversao-temperatura 
+ubuntu-curl-file 
+ubunt-curl-commit 
+teste 
+node 
+mongo 
+ubuntu 
+amazon/aws-cli 
+nginx 
+TAG 
+latest 
+latest 
+latest 
+VI 
+latest 
+latest 
+latest 
+latest 
+latest 
+latest 
+latest 
+IMAGE ID 
+46bff51b79a6 
+bf723c741e44 
+e55f@4c33d68 
+e55f@4c33d68 
+13d643c1c735 
+8978b69da8cd 
+96d27535cd39 
+14777a723ec4 
+ee13a1eacac9 
+d13c942271d6 
+c27cba774@64 
+6@5c77e624dd 
+39 minutes ago 
+2 hours ago 
+2 hours ago 
+2 hours ago 
+3 hours ago 
+24 hours ago 
+3 days ago 
+6 days ago 
+11 days ago 
+11 days ago 
+11 days ago 
+2 weeks ago 
+SIZE 
+1. @5GB 
+1. @5GB 
+184MB 
+184MB 
+122MB 
+122MB 
+124MB 
+993MB 
+696MB 
+72 . 8MB 
+344MB 
+141MB 
+ 
+
+Preferência a imagens oficiais 
+IORKDIR /app 
+./package• . json . / 
+iWN npm instatt 
+:-.OPY . . 
+EXPOSE 8080 
+FROM noce 
+(OPY ./package•.json . / 
+RUN npn instan 
+COPY . 
+EXPOSE 8080 
+ENTRYPOINT ( •node-, -server. js-l 
+Sempre especifique a tag nas imagens 
+js•l 
+node 
+WORKDIR 'app 
+COPY . 'package• . j son 
+RUN npm instatt 
+COPY . . 
+EXPOSE 8080 
+ENTRYPOINT 1 •node". • 
+server. 
+FROM node: 14. 17.5 
+WORKOIR lapp 
+COPY ./package•. json . / 
+RUN npm install 
+COPY . . 
+EXPOSE 8080 
+ENTRYPOIUT ("node , 
+- server. js"l 
+antoniofigueiredo@antoniofigueiredo:~/Wise_Repository/Dockerfile$ cd conversao-temperatura/ 
+
+ 
+
+ 
+
+ 
+
+FROM node:14.17.5 
+
+WORKDIR /app 
+
+COPY package*.json ./ 
+
+RUN npm install  
+
+COPY . . 
+
+EXPOSE 8080 
+
+CMD ["node", "server.js"] 
+
+ 
+
+docker image build -t wiseticonsulting/conversao-temperatura:v1 . 
+
+ 
+
+[DICAS - Não colocar varios processos em um unico Container ] 
+
+Um processo por container 
+ 
+
+Aproveitamento das camadas de imagem 
+x 
+ROM node: 14.17.5 
+"ORKDIR lapp 
+COPY . 
+RUN npm install 
+EXPOSE 8080 
+ROM node: 14.17.5 
+WORKDIR /app 
+COPY . /package• . j son 
+RUN npm install 
+COPY . 
+EXPOSE 8080 
+ 
+
+[ BOA PRATICA UTILIZE COPY ] 
+
+copy vs ADD 
+ 
+
+[ ENTRYPOINT PARA SUBIR CONTAIBER ]ENTRY/ 
+
+ENTRYPOINT vs CMD 
+ 
+
+EXPLORER 
+v OPEN EDITORS 
+Dockerfile 
+x Dockerfile 
+Dockerfile 
+Dockerfile 
+Dockerfile — /.asrc U X Dockerfile 
+Wise Repository > Dockerfile > conversao-temperatura > src > Dockerfile 
+—'Wise_Repository/Dockerfile 
+—/Wise_Repository/Dockerfile/conversao-temperatura/src 
+-'Wise_Repository/Dockerfile/ENTRYP01NT vs ADD 
+2 
+3 
+4 
+6 
+7 
+FROM node: 14.17.5 
+WORKDIR /app 
+COPY package* . json ./ 
+RUN npm install 
+S entrypoint.sh —/Wise_Repository/Dockerfile/ENTRYPOlNT vs ADD 
+> ANTONIOFIGUEIREDO 
+> OUTLINE 
+COPY . 
+EXPOSE 8680 
+CMD ["node", " 
+server.js"] 
+ 
+
+docker build -t wiseticonsulting/ubuntu:cmd  
+
+ 
+
+[antoniofiguei redo@antoniofiguei redo. 
+se_Reposi tory/Dockerfi 
+CONTAINER ID 
+IMAGE 
+COMMAND 
+CREATED 
+STATUS 
+PORTS 
+[antoniofiguei redo@antoniofiguei redo: 
+se_Reposi tory/Dockerfi 
+NAMES 
+CREATED 
+3 minutes 
+$ docker container Is 
+vs ADD 
+$ docker image Is 
+vs ADD 
+REPOSITORY 
+wiseticonsulting/ubuntu 
+TAG 
+cmd 
+IMAGE ID 
+a72b5f31d@82 
+ago 
+SIZE 
+72 . 8MB 
+ 
+
+docker container run wiseticonsulting/ubuntu:cmd 
+
+ 
+
+[antoniofiguei redo@antoniofiguei redo. 
+• se_Reposi tory/Dockerfi 
+Iniciando meu Primeiro Container com 
+EntryPoint 
+antoniofiguei redo@antoniofiguei redo. 
+ADDS 
+docker container run wiseticonsulting/ubuntu:cmd 
+ 
