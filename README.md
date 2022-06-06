@@ -8,6 +8,7 @@ Progress
 Semana 01 
 
 [✔️] ♾️ 1 > Introdução 
+
 [✔️] ♾️ 1 >Overview sobre container e Kubernetes 
 [✔️] ♾️ 1 >O que é a Cloud Native Computing Foundation ? 
 [✔️] ♾️ 1 >Arquitetura do Kubernetes 
